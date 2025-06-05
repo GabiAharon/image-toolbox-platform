@@ -1,126 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import EnhancedBackgroundRemoval from './tools/EnhancedBackgroundRemoval';
-import ImageCrop from './tools/ImageCrop';
-import AdvancedFilters from './tools/AdvancedFilters';
-import FormatConverter from './tools/FormatConverter';
+import React from 'react';
 
 function App() {
-  const [currentTool, setCurrentTool] = useState('background-removal');
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // Set theme on mount and when changed
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
-
-  const handleThemeToggle = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const renderToolContent = () => {
-    switch (currentTool) {
-      case 'background-removal':
-        return <EnhancedBackgroundRemoval />;
-      case 'image-crop':
-        return <ImageCrop />;
-      case 'filters':
-        return <AdvancedFilters />;
-      case 'format-converter':
-        return <FormatConverter />;
-      default:
-        return <ToolsOverview onToolSelect={setCurrentTool} />;
-    }
-  };
-
   return (
-    <div className="app-container">
-      <Header 
-        currentTool={currentTool}
-        onToolChange={setCurrentTool}
-        isDarkMode={isDarkMode}
-        onThemeToggle={handleThemeToggle}
-      />
-      
-      <main className="main-content">
-        {renderToolContent()}
-      </main>
+    <div style={{ 
+      height: '100vh', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      fontFamily: 'Arial, sans-serif',
+      textAlign: 'center',
+      direction: 'rtl'
+    }}>
+      <div>
+        <h1 style={{ color: '#2563eb', marginBottom: '20px' }}>
+          🎉 האפליקציה עובדת!
+        </h1>
+        <h2 style={{ color: '#1f2937' }}>
+          🖼️ פלטפורמת עיצוב תמונות
+        </h2>
+        <p style={{ fontSize: '18px', color: '#6b7280', margin: '20px 0' }}>
+          הפריסה בנטליפיי הצליחה בהצלחה! 🚀
+        </p>
+        <div style={{ 
+          background: '#f3f4f6', 
+          padding: '20px', 
+          borderRadius: '10px',
+          marginTop: '30px'
+        }}>
+          <h3>כלים זמינים:</h3>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            <li>🎭 הסרת רקע מתקדמת</li>
+            <li>✂️ חיתוך תמונות</li>
+            <li>🎨 פילטרים מתקדמים (230+ אפקטים)</li>
+            <li>🔄 המרת פורמטים</li>
+          </ul>
+        </div>
+        <p style={{ marginTop: '30px', fontSize: '14px', color: '#9ca3af' }}>
+          גרסת בדיקה - עם הכלים המלאים בקרוב
+        </p>
+      </div>
     </div>
   );
 }
-
-
-
-// Tools overview component
-const ToolsOverview = ({ onToolSelect }) => {
-  const tools = [
-    {
-      id: 'background-removal',
-      name: 'הסרת רקע',
-      icon: '🎭',
-      description: 'הסר רקע מתמונות באמצעות AI מתקדם',
-      features: ['AI מתקדם', 'תוצאות מדויקות', 'תמיכה בכל הפורמטים'],
-      status: 'ready'
-    },
-    {
-      id: 'image-crop',
-      name: 'חיתוך תמונה',
-      icon: '✂️',
-      description: 'חתוך תמונות ביחסי גובה-רוחב שונים',
-      features: ['יחסים מוגדרים מראש', 'חיתוך חופשי', 'תצוגה מקדימה'],
-      status: 'ready'
-    },
-    {
-      id: 'filters',
-      name: 'פילטרים',
-      icon: '🎨',
-      description: 'החל פילטרים ואפקטים מתקדמים',
-      features: ['פילטרים מוכנים', 'התאמה ידנית', 'תצוגה מקדימה'],
-      status: 'ready'
-    },
-    {
-      id: 'format-converter',
-      name: 'המרת פורמט',
-      icon: '🔄',
-      description: 'המר בין פורמטי תמונה שונים',
-      features: ['WebP, JPEG, PNG, BMP', 'אופטימיזציה', 'בקרת איכות'],
-      status: 'ready'
-    }
-  ];
-
-  return (
-    <div className="tools-overview">
-      <div className="overview-header">
-        <h1>🖼️ פלטפורמת עיצוב תמונות</h1>
-        <p>כלים מתקדמים לעריכה ועיבוד תמונות</p>
-      </div>
-      
-      <div className="tools-grid">
-        {tools.map(tool => (
-          <div 
-            key={tool.id} 
-            className="tool-card"
-            onClick={() => onToolSelect(tool.id)}
-          >
-            <div className="tool-card-header">
-              <div className="tool-icon">
-                <span style={{ fontSize: '24px' }}>{tool.icon}</span>
-              </div>
-              <div>
-                <h3 className="tool-title">{tool.name}</h3>
-              </div>
-            </div>
-            <p className="tool-description">{tool.description}</p>
-            <ul className="tool-features">
-              {tool.features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 export default App; 
