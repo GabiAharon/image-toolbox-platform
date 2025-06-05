@@ -1,3 +1,16 @@
 /*
   Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: require-corp 
+  Cross-Origin-Embedder-Policy: require-corp
+
+# WASM files
+/*.wasm
+  Content-Type: application/wasm
+  
+# JS modules  
+/*.mjs
+  Content-Type: application/javascript
+
+# Large file support
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff 
